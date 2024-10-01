@@ -1,0 +1,6 @@
+selenium
+werbdriver-manager
+behave
+chalice
+requests
+pytest
