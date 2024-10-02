@@ -1,6 +1,7 @@
 selenium
 webdriver-manager
 behave
+allure-behave
 chalice
 requests
 pytest
