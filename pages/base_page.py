@@ -1,7 +1,6 @@
-from selenium import webdriver
 
 
 class BasePage:
 
-    def __init__(self, driver: webdriver):
-        self.driver = driver
+    def __init__(self):
+        pass
