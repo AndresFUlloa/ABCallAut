@@ -22,12 +22,19 @@ def set_email(context, email):
 
 
 @when('user set password "{password}"')
-def set_email(context, password):
+def set_password(context, password):
     context.loginPage = LoginPage()
     context.loginPage.set_password(password)
 
 
 @when('user clicks login button')
-def set_email(context):
+def click_login(context):
     context.loginPage = LoginPage()
     context.loginPage.click_login()
+    context.loginPage.wait_spinner_fade_out()
+
+
+@when('user clicks on register')
+def set_email(context):
+    context.loginPage = LoginPage()
+    context.loginPage.click_register()

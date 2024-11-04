@@ -1,7 +1,8 @@
-selenium
+selenium~=4.25.0
 webdriver-manager
-behave
+behave~=1.2.6
 allure-behave
 chalice
 requests
 pytest
+Faker~=30.8.2
