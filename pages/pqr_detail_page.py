@@ -27,3 +27,9 @@ class DetailPQRPage(BasePage):
 
     def get_state(self) -> WebElement:
         return DriverUtils.wait_until_visible(self.STATE_LABEL)
+
+    def get_date(self) -> WebElement:
+        return DriverUtils.wait_until_visible(self.DATE_LABEL)
+
+    def get_description(self) -> WebElement:
+        return DriverUtils.wait_until_visible(self.DESCRIPTION_LABEL)

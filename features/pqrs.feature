@@ -18,3 +18,4 @@ Feature: Submit PQRS
         And Pqr Status must be "ABIERTO"
         And Pqr Date must be "TODAY"
         When user clicks on details
+        Then validate details fields "Global", "Global", "Global", "OPEN", "TODAY", "Global"
