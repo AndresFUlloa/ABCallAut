@@ -1,6 +1,6 @@
 Feature: Submit PQRS
 
-    @Test
+    @Regression
     Scenario: Submit PQR correctly
         Given the user starts the app
         When user set email "robert@mail.com"

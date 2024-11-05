@@ -1,6 +1,7 @@
 from behave import given, when
 
 from pages.login_page import LoginPage
+from utils import global_variable
 from utils.config_properties import ConfigProperties
 from utils.driver_utils import DriverUtils
 
@@ -18,12 +19,16 @@ def start_app(context):
 @when('user set email "{email}"')
 def set_email(context, email):
     context.loginPage = LoginPage()
+    if email.lower() == 'global':
+        email = global_variable.NEW_USER.email
     context.loginPage.set_user(email)
 
 
 @when('user set password "{password}"')
 def set_password(context, password):
     context.loginPage = LoginPage()
+    if password.lower() == 'global':
+        password = global_variable.NEW_USER.password
     context.loginPage.set_password(password)
 
 
@@ -35,6 +40,6 @@ def click_login(context):
 
 
 @when('user clicks on register')
-def set_email(context):
+def click_register(context):
     context.loginPage = LoginPage()
     context.loginPage.click_register()
