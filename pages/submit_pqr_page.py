@@ -14,7 +14,6 @@ class SubmitPQRPage(BasePage):
         self.DESCRIPTION = (By.ID, "mat-input-1")
         self.SEND_BUTTON = (By.TAG_NAME, "button")
         self.TRACKING_NUMBER = (By.CSS_SELECTOR, "mat-dialog-container p")
-        self.OK_BUTTON = (By.CSS_SELECTOR, "mat-dialog-container button")
 
     def set_request_type(self, request_type):
         DriverUtils.wait_for_element(self.REQUEST_TYPE).click()
@@ -32,5 +31,3 @@ class SubmitPQRPage(BasePage):
     def get_tracking_number(self) -> WebElement:
         return DriverUtils.wait_until_visible(self.TRACKING_NUMBER)
 
-    def click_on_ok(self):
-        DriverUtils.wait_until_clickable(self.OK_BUTTON).click()

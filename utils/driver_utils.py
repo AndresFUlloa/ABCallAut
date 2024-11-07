@@ -1,4 +1,7 @@
+import time
+
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
@@ -59,6 +62,12 @@ class DriverUtils:
         element = DriverUtils.wait_for_element(locator)
         select = Select(element)
         select.select_by_visible_text(text)
+
+    @staticmethod
+    def select_by_mat_selector(locator: tuple, text: str):
+        DriverUtils.wait_until_clickable(locator).click()
+        xpath = (By.XPATH, f'//*[text()="{text}"]')
+        DriverUtils.wait_until_clickable(xpath).click()
 
     @staticmethod
     def take_screenshot(name: str):

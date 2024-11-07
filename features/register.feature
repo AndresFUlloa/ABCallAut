@@ -1,6 +1,6 @@
 Feature: Register in to ABCall
 
-    @Test
+    @Regression
     Scenario Outline: Register correctly
         Given the user starts the app
         When user clicks on register
