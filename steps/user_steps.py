@@ -1,9 +1,11 @@
 import time
 import random
+from typing import Optional
 
 from behave import when, then
 from faker import Faker
 from selenium.common import TimeoutException
+from selenium.webdriver.remote.webelement import WebElement
 
 from dtos.user_dto import UserDTO
 from pages.create_user_page import CreateUserPage
@@ -23,7 +25,7 @@ def user_clicks_create_user(context):
       '"{id_type}", and "{role}"')
 def user_creates_user(context, id_number, name, last_name, email, cellphone, password, id_type, role):
     context.create_user_page = CreateUserPage()
-    id_types = ['Cedula', 'Passport', 'Cedula_extranjeria']
+    id_types = ['Cedula', 'Passport']
     global_variable.NEW_USER = UserDTO()
 
     if id_number == 'rand':
@@ -48,7 +50,7 @@ def user_creates_user(context, id_number, name, last_name, email, cellphone, pas
     global_variable.NEW_USER.cellphone = cellphone
 
     if id_type == 'rand':
-        id_type = id_types[random.choice([0, 1, 2])]
+        id_type = id_types[random.choice([0, 1])]
         print("ID TYPE:", id_type)
     global_variable.NEW_USER.id_type = id_type
 
@@ -78,7 +80,7 @@ def user_search_for_last_user(context):
 def user_in_list_must_be(context, id_number, name, role):
     time.sleep(3)
     context.user_list_page = UserListPage()
-
+    print(global_variable.NEW_USER)
     if id_number.lower() == 'global':
         id_number = global_variable.NEW_USER.id_number
 
@@ -88,14 +90,28 @@ def user_in_list_must_be(context, id_number, name, role):
     if role.lower() == 'global':
         role = global_variable.NEW_USER.role
 
-    element = context.user_list_page.get_id_number('last')
-    assert element.is_displayed(), "Id number is not visible"
-    assert element.text == id_number, f"Id number invalid expected: {id_number}, got {element.text} instead"
+    ended = False
+    row_element: Optional[WebElement] = None
+    while not ended:
+        row_element = context.user_list_page.is_id_number_in_table(str(id_number))
+        if row_element:
+            ended = True
+        elif context.user_list_page.get_next_page().is_enabled():
+            context.user_list_page.get_next_page().click()
+        else:
+            ended = True
 
-    element = context.user_list_page.get_name('last')
+    assert row_element is not None, "User not found"
+
+    row_element = context.user_list_page.get_row_from_td(row_element)
+    element = context.user_list_page.get_id_number_from_row(row_element)
+    assert element.is_displayed(), "Id number is not visible"
+    assert element.text.replace(' ', '') == str(id_number), f"Id number invalid expected: {id_number}, got {element.text} instead"
+
+    element = context.user_list_page.get_name_from_row(row_element)
     assert element.is_displayed(), "Name is not visible"
     assert element.text == name, f"Name invalid expected: {name}, got {element.text} instead"
 
-    element = context.user_list_page.get_perfil('last')
+    element = context.user_list_page.get_role_from_row(row_element)
     assert element.is_displayed(), "Role is not visible"
     assert element.text == role, f"Role invalid expected: {role}, got {element.text} instead"

@@ -29,8 +29,9 @@ class DriverUtils:
         )
 
     @staticmethod
-    def wait_until_visible(locator: tuple[str, str], timeout=10) -> WebElement:
-        return WebDriverWait(DriverUtils.driver, timeout).until(
+    def wait_until_visible(locator: tuple, timeout=10, element: WebElement = None) -> WebElement:
+        tmp_driver = element if element else DriverUtils.driver
+        return WebDriverWait(tmp_driver, timeout).until(
             expected_conditions.visibility_of_element_located(locator)
         )
 
