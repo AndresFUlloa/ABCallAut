@@ -1,6 +1,6 @@
 Feature: Search for articles
 
-    @Test
+    @Regression
     Scenario Outline: Search Article correctly
         Given the user starts the app
         When user set email "<user>"

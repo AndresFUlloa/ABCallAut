@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
@@ -34,6 +36,7 @@ class RegisterPage(BasePage):
 
     def set_company(self, company):
         DriverUtils.wait_for_element(self.COMPANY).click()
+        time.sleep(0.1)
         DriverUtils.wait_for_element((By.XPATH, f"//option[text()='{company}']")).click()
 
     def set_communication_type(self, communication_type):

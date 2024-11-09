@@ -14,7 +14,7 @@ class DetailPQRPage(BasePage):
         self.PETITION_LABEL = (By.XPATH, "//label[text()='Tipo:']/parent::div/following-sibling::div/label")
         self.STATE_LABEL = (By.XPATH, "//label[text()='Estado:']/parent::div/following-sibling::div/label")
         self.DATE_LABEL = (By.XPATH, "//label[text()='Fecha:']/parent::div/following-sibling::div/label")
-        self.DESCRIPTION_LABEL = (By.XPATH, "//label[text()='Descripción']/parent::div/following-sibling::div/p")
+        self.DESCRIPTION_LABEL = (By.XPATH, "//label[text()='Descripción:']/parent::div/following-sibling::div/p")
 
     def get_subject(self) -> WebElement:
         return DriverUtils.wait_until_visible(self.SUBJECT_LABEL)

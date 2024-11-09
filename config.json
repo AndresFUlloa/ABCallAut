@@ -1,4 +1,4 @@
 {
-  "home_url": "http://localhost:4200/",
-  "home_url_1": "http://abcall-frontend-website.s3-website-us-east-1.amazonaws.com/login"
+  "home_url_1": "http://localhost:4200/",
+  "home_url": "http://abcall-frontend-website.s3-website-us-east-1.amazonaws.com/login"
 }
