@@ -36,9 +36,16 @@ class DriverUtils:
         )
 
     @staticmethod
-    def wait_until_clickable(locator: tuple, timeout=10) -> WebElement:
-        return WebDriverWait(DriverUtils.driver, timeout).until(
-            expected_conditions.element_to_be_clickable(locator))
+    def wait_until_clickable(locator: tuple, timeout=10, scroll=False) -> WebElement:
+        element = WebDriverWait(DriverUtils.driver, timeout).until(
+            expected_conditions.presence_of_element_located(locator))
+
+        if scroll:
+            DriverUtils.driver.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });",
+                                              element)
+            time.sleep(1)
+
+        return WebDriverWait(DriverUtils.driver, timeout).until(expected_conditions.element_to_be_clickable(locator))
 
     @staticmethod
     def wait_to_fade_out(element: WebElement, timeout=180):

@@ -1,6 +1,6 @@
 Feature: Create User
 
-    @Test
+    @Regression
     Scenario: Create user correctly
         Given the user starts the app
         When user set email "andresulloa@test.com"

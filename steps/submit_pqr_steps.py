@@ -50,6 +50,6 @@ def click_on_send(context):
 def check_tracking_number(context):
     tracking_number: WebElement = context.submit_page.get_tracking_number()
     assert tracking_number.is_displayed(), "ID Number Not Found"
-    assert "#" in tracking_number.text, "Invalid tracking number"
-    global_variable.NEW_PQR.tracking_number = tracking_number.text.split("#")[1]
+    assert "INC-" in tracking_number.text, "Invalid tracking number"
+    global_variable.NEW_PQR.tracking_number = "INC-" + tracking_number.text.split("INC-")[1]
     context.submit_page.click_on_ok()

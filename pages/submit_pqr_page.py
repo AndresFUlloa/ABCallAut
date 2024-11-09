@@ -9,15 +9,17 @@ class SubmitPQRPage(BasePage):
 
     def __init__(self):
         super().__init__()
-        self.REQUEST_TYPE = (By.ID, "mat-mdc-form-field-label-2")
-        self.SUBJECT = (By.ID, "mat-input-0")
-        self.DESCRIPTION = (By.ID, "mat-input-1")
+        # (By.ID, "mat-mdc-form-field-label-2")
+        self.REQUEST_TYPE = (By.CSS_SELECTOR, "select[formcontrolname='type']")
+        # (By.ID, "mat-input-0")
+        self.SUBJECT = (By.CSS_SELECTOR, "input[formcontrolname='title']")
+        # (By.ID, "mat-input-1")
+        self.DESCRIPTION = (By.ID, "descripcion")
         self.SEND_BUTTON = (By.TAG_NAME, "button")
         self.TRACKING_NUMBER = (By.CSS_SELECTOR, "mat-dialog-container p")
 
     def set_request_type(self, request_type):
-        DriverUtils.wait_for_element(self.REQUEST_TYPE).click()
-        DriverUtils.wait_until_clickable((By.XPATH, f"//*[text()='{request_type}']")).click()
+        DriverUtils.select_by_value(self.REQUEST_TYPE, request_type)
 
     def set_subject(self, subject):
         DriverUtils.wait_for_element(self.SUBJECT).send_keys(subject)
