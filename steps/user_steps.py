@@ -1,10 +1,9 @@
-import time
 import random
+import time
 from typing import Optional
 
 from behave import when, then
 from faker import Faker
-from selenium.common import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 
 from dtos.user_dto import UserDTO

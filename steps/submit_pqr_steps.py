@@ -19,7 +19,6 @@ def step_set_request_type(context, request_type):
     if request_type == 'rand':
         request_type = PQRS_Types[random.choice([0, 1, 2])]
     context.submit_page = SubmitPQRPage()
-    print("REQUEST TYPE:", request_type)
     context.submit_page.set_request_type(request_type)
     global_variable.NEW_PQR.type = request_type
 

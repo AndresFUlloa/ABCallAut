@@ -1,5 +1,4 @@
 import datetime
-import time
 
 from behave import then, when
 from selenium.webdriver.remote.webelement import WebElement

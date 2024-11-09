@@ -1,5 +1,3 @@
-import time
-
 from behave import when
 from faker import Faker
 
