@@ -1,6 +1,6 @@
 Feature: Search for articles
 
-    @Regression
+    @Test
     Scenario Outline: Search Article correctly
         Given the user starts the app
         When user set email "<user>"
@@ -12,4 +12,4 @@ Feature: Search for articles
 
     Examples:
       |user|password|search_text|
-      |andresulloa@test.com|ABCpassword123!|PQR|
+      |andresulloa@test.com|ABCpassword123!|preguntas|

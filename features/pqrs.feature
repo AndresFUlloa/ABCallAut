@@ -1,10 +1,10 @@
 Feature: Submit PQRS
 
-    @Regression
+    @Test
     Scenario: Submit PQR correctly
         Given the user starts the app
-        When user set email "robert@mail.com"
-        And user set password "Test@123"
+        When user set email "andresulloa@test.com"
+        And user set password "ABCpassword123!"
         And user clicks login button
         And user navigates to "Radicar PQR"
         And user selects pqr request type "rand"

@@ -1,0 +1,135 @@
+Feature: Search for articles
+
+  Scenario Outline: Search Article correctly -- @1.1 
+    Given the user starts the app ... passed in 5.850s
+    When user set email "andresulloa@test.com" ... passed in 0.111s
+    And user set password "ABCpassword123!" ... passed in 0.026s
+    And user clicks login button ... passed in 1.781s
+    And user navigates to "Base de Conocimientos" ... passed in 5.067s
+    And user search article "PQR" ... passed in 6.236s
+    Then there must be articles ... passed in 0.077s
+
+Feature: Login in to ABCall
+
+  Scenario: Login correctly
+    Given the user starts the app ... passed in 5.204s
+    When user set email "andresulloa@test.com" ... passed in 0.089s
+    And user set password "ABCpassword123!" ... passed in 0.029s
+    And user clicks login button ... passed in 1.740s
+
+Feature: Submit PQRS
+
+  Scenario: Submit PQR correctly
+    Given the user starts the app ... passed in 5.199s
+    When user set email "robert@mail.com" ... passed in 0.086s
+    And user set password "Test@123" ... passed in 0.026s
+    And user clicks login button ... passed in 1.711s
+    And user navigates to "Radicar PQR" ... passed in 5.070s
+    And user selects pqr request type "rand" ... passed in 0.055s
+    And user set pqr subject "rand" ... passed in 0.028s
+    And user set pqr description "rand" ... passed in 0.053s
+    And user clicks on send pqr ... passed in 10.042s
+    Then tracking number must be visible ... passed in 0.082s
+    When user navigates to "Consultar PQR" ... passed in 5.058s
+    And user search ticket number "Global" ... passed in 2.147s
+    Then Pqr subject must be "Global" ... failed in 10.367s
+Traceback (most recent call last):
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/behave/model.py", line 1329, in run
+    match.run(runner.context)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/behave/matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "steps/check_pqr_steps.py", line 25, in check_pqr_subject
+    element: WebElement = context.check_pqr_page.get_subject_row(1)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/pages/check_pqr_page.py", line 22, in get_subject_row
+    return DriverUtils.wait_until_visible(locator)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/utils/driver_utils.py", line 34, in wait_until_visible
+    return WebDriverWait(tmp_driver, timeout).until(
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010330fac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000103308314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x0000000102d704b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x0000000102db4898 cxxbridge1$string$len + 368748
+4   chromedriver                        0x0000000102dee0fc cxxbridge1$string$len + 604368
+5   chromedriver                        0x0000000102da90b0 cxxbridge1$string$len + 321668
+6   chromedriver                        0x0000000102da9d00 cxxbridge1$string$len + 324820
+7   chromedriver                        0x00000001032dae08 cxxbridge1$str$ptr + 3435328
+8   chromedriver                        0x00000001032de120 cxxbridge1$str$ptr + 3448408
+9   chromedriver                        0x00000001032c217c cxxbridge1$str$ptr + 3333812
+10  chromedriver                        0x00000001032de9e0 cxxbridge1$str$ptr + 3450648
+11  chromedriver                        0x00000001032b3988 cxxbridge1$str$ptr + 3274432
+12  chromedriver                        0x00000001032f90f4 cxxbridge1$str$ptr + 3558956
+13  chromedriver                        0x00000001032f9270 cxxbridge1$str$ptr + 3559336
+14  chromedriver                        0x0000000103307f88 cxxbridge1$str$ptr + 3620032
+15  libsystem_pthread.dylib             0x0000000184ac2f94 _pthread_start + 136
+16  libsystem_pthread.dylib             0x0000000184abdd34 thread_start + 8
+
+
+
+Feature: Register in to ABCall
+
+  Scenario Outline: Register correctly -- @1.1 
+    Given the user starts the app ... passed in 5.207s
+    When user clicks on register ... passed in 0.049s
+    And user fills the register form with "Cedula", "rand", "rand", "rand", "TIGO", "Sms", "rand", "rand", "ABCpassword123!" ... failed in 1.219s
+Traceback (most recent call last):
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/behave/model.py", line 1329, in run
+    match.run(runner.context)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/behave/matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "steps/register_steps.py", line 34, in step_user_fills_register_form
+    context.register_page.set_company(company)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/pages/register_page.py", line 38, in set_company
+    DriverUtils.wait_for_element(self.COMPANY).click()
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/andresulloa/Documents/ReposMISO/ProyectoFinal1/ABCallAut/venv/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <select _ngcontent-ng-c3724356013="" id="empresa" formcontrolname="empresa" class="ng-untouched ng-pristine ng-invalid">...</select> is not clickable at point (533, 364). Other element would receive the click: <div _ngcontent-ng-c2296230490="" class="spinner-container">...</div>
+  (Session info: chrome=131.0.6778.86)
+Stacktrace:
+0   chromedriver                        0x0000000102f4bac4 cxxbridge1$str$ptr + 3651580
+1   chromedriver                        0x0000000102f44314 cxxbridge1$str$ptr + 3620940
+2   chromedriver                        0x00000001029ac4b4 cxxbridge1$string$len + 89224
+3   chromedriver                        0x00000001029f612c cxxbridge1$string$len + 391424
+4   chromedriver                        0x00000001029f477c cxxbridge1$string$len + 384848
+5   chromedriver                        0x00000001029f26c0 cxxbridge1$string$len + 376468
+6   chromedriver                        0x00000001029f1af8 cxxbridge1$string$len + 373452
+7   chromedriver                        0x00000001029e6fbc cxxbridge1$string$len + 329616
+8   chromedriver                        0x00000001029e6a10 cxxbridge1$string$len + 328164
+9   chromedriver                        0x0000000102a2a0fc cxxbridge1$string$len + 604368
+10  chromedriver                        0x00000001029e50b0 cxxbridge1$string$len + 321668
+11  chromedriver                        0x00000001029e5d00 cxxbridge1$string$len + 324820
+12  chromedriver                        0x0000000102f16e08 cxxbridge1$str$ptr + 3435328
+13  chromedriver                        0x0000000102f1a120 cxxbridge1$str$ptr + 3448408
+14  chromedriver                        0x0000000102efe17c cxxbridge1$str$ptr + 3333812
+15  chromedriver                        0x0000000102f1a9e0 cxxbridge1$str$ptr + 3450648
+16  chromedriver                        0x0000000102eef988 cxxbridge1$str$ptr + 3274432
+17  chromedriver                        0x0000000102f350f4 cxxbridge1$str$ptr + 3558956
+18  chromedriver                        0x0000000102f35270 cxxbridge1$str$ptr + 3559336
+19  chromedriver                        0x0000000102f43f88 cxxbridge1$str$ptr + 3620032
+20  libsystem_pthread.dylib             0x0000000184ac2f94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000184abdd34 thread_start + 8
+
+
+
+Feature: Create User
+
+  Scenario: Create user correctly
+    Given the user starts the app ... passed in 5.310s
+    When user set email "andresulloa@test.com" ... passed in 0.089s
+    And user set password "ABCpassword123!" ... passed in 0.029s
+    And user clicks login button ... passed in 1.785s
+    And user navigates to "Usuarios Registrados" ... passed in 5.060s
+    And user click on create user ... passed in 0.068s
+    And user creates user with "rand", "rand", "rand", "rand", "rand", "ABCpassword123!", "rand", and "Admin" ... passed in 2.502s
+    And user navigates to "Usuarios Registrados" ... passed in 5.047s
+    And user search for last user ... passed in 0.066s
+    Then user in list must be "Global", "Global", "Global" ... passed in 3.094s
+
